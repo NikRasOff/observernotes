@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvnkmcy514umo"]
+
+[ext_resource type="PackedScene" uid="uid://dpw1730p0dbqo" path="res://ui_components/scenes/interactive_video_player.tscn" id="1_a3wh7"]
+[ext_resource type="Script" uid="uid://4g4vd8ttsg17" path="res://ui_components/scripts/video_edit_thing.gd" id="1_rl2mh"]
+[ext_resource type="Texture2D" uid="uid://b5i07ga263t4x" path="res://icons/button_icons/remove.png" id="2_rl2mh"]
+
+[node name="VideoEditThing" type="Control" node_paths=PackedStringArray("video_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rl2mh")
+video_player = NodePath("InteractiveVideoPlayer")
+
+[node name="InteractiveVideoPlayer" parent="." instance=ExtResource("1_a3wh7")]
+layout_mode = 1
+
+[node name="RemoveButton" type="Button" parent="InteractiveVideoPlayer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+tooltip_text = "Remove Video"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("2_rl2mh")
+
+[connection signal="pressed" from="InteractiveVideoPlayer/RemoveButton" to="." method="_on_remove_button_pressed"]

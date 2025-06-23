@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://i82tt2eaij30"]
+
+[ext_resource type="Script" uid="uid://d1q4draiexeyn" path="res://ui_components/scripts/fullscreen_layer.gd" id="1_4d0md"]
+[ext_resource type="PackedScene" uid="uid://dpw1730p0dbqo" path="res://ui_components/scenes/interactive_video_player.tscn" id="2_48ext"]
+[ext_resource type="PackedScene" uid="uid://c5uwyg6e60v08" path="res://ui_components/scenes/image_display.tscn" id="2_w5miq"]
+[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="3_w5miq"]
+
+[node name="FullscreenLayer" type="CanvasLayer" node_paths=PackedStringArray("image_display", "video_player", "background")]
+script = ExtResource("1_4d0md")
+image_display = NodePath("ImageDisplay")
+video_player = NodePath("InteractiveVideoPlayer")
+background = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImageDisplay" parent="." instance=ExtResource("2_w5miq")]
+visible = false
+theme = ExtResource("3_w5miq")
+
+[node name="InteractiveVideoPlayer" parent="." instance=ExtResource("2_48ext")]
+visible = false
+theme = ExtResource("3_w5miq")

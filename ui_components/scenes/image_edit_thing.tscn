@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxhw5a74sfb0l"]
+
+[ext_resource type="Texture2D" uid="uid://bsyi5c4lhhpb8" path="res://icons/file_icons/folder.png" id="1_ujujd"]
+[ext_resource type="Script" uid="uid://ceyt416625tan" path="res://ui_components/scripts/image_edit_thing.gd" id="2_jer1i"]
+[ext_resource type="Texture2D" uid="uid://b5i07ga263t4x" path="res://icons/button_icons/remove.png" id="2_yylba"]
+[ext_resource type="Texture2D" uid="uid://2vnx11dgvhvr" path="res://icons/button_icons/fullscreen.png" id="4_jer1i"]
+
+[node name="ImageEditThing" type="TextureRect" node_paths=PackedStringArray("fullscreen_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ujujd")
+expand_mode = 5
+script = ExtResource("2_jer1i")
+fullscreen_button = NodePath("FullscreenButton")
+
+[node name="RemoveButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+tooltip_text = "Remove image"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("2_yylba")
+
+[node name="FullscreenButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Fullscreen"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("4_jer1i")
+
+[connection signal="pressed" from="RemoveButton" to="." method="_on_remove_button_pressed"]

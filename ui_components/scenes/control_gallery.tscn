@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://csq4jl83uhxcs"]
+
+[ext_resource type="Texture2D" uid="uid://bnoelsy7b1iac" path="res://icons/button_icons/left.png" id="1_bo2uu"]
+[ext_resource type="Script" uid="uid://bas7r33in8rlp" path="res://ui_components/scripts/control_gallery.gd" id="1_bqgl2"]
+[ext_resource type="Texture2D" uid="uid://782deewqr3tn" path="res://icons/button_icons/right.png" id="2_bqgl2"]
+[ext_resource type="PackedScene" uid="uid://dpw1730p0dbqo" path="res://ui_components/scenes/interactive_video_player.tscn" id="2_kacip"]
+[ext_resource type="PackedScene" uid="uid://c5uwyg6e60v08" path="res://ui_components/scenes/image_display.tscn" id="3_ji1tm"]
+
+[node name="ControlGallery" type="Control" node_paths=PackedStringArray("left_button", "right_button", "button_control", "content_control")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqgl2")
+video_player_scene = ExtResource("2_kacip")
+image_display_scene = ExtResource("3_ji1tm")
+left_button = NodePath("Buttons/LeftButton")
+right_button = NodePath("Buttons/RightButton")
+button_control = NodePath("Buttons")
+content_control = NodePath("Content")
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftButton" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -36.0
+offset_right = 40.0
+offset_bottom = 36.0
+grow_vertical = 2
+tooltip_text = "See previous"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("1_bo2uu")
+
+[node name="RightButton" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -36.0
+offset_bottom = 36.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "See next"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("2_bqgl2")

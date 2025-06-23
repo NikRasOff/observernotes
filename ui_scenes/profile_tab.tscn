@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj15yu5r74y20"]
+
+[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_qqs5y"]
+[ext_resource type="Script" uid="uid://ctoi2r48tkfpv" path="res://ui_scenes/scripts/profile_tab.gd" id="2_lqej6"]
+
+[node name="ProfileTab" type="Control" node_paths=PackedStringArray("profile_name_edit", "confirm_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_qqs5y")
+script = ExtResource("2_lqej6")
+profile_name_edit = NodePath("VBoxContainer/ProfileNameEdit")
+confirm_button = NodePath("VBoxContainer/ConfirmButton")
+
+[node name="SafetyLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.5
+offset_right = 5.5
+offset_bottom = 29.0
+grow_horizontal = 2
+text = "If you're seeing this text that means that I fucked up and forgot to edit this part out of the episode
+This is not meant to be seen
+I'm leaving this text here just in case that ever happens"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ProfileNameEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Profile name"
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Set profile name"

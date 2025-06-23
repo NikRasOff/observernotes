@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://dr0cr4ycmekhm"]
+
+[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_iwie5"]
+[ext_resource type="Script" uid="uid://pmkdwwwhxlbo" path="res://ui_components/scripts/observation_edit.gd" id="2_sditg"]
+[ext_resource type="ButtonGroup" uid="uid://c7d1abh1f1bxr" path="res://ui_components/obs_type_button_group.tres" id="2_w0sja"]
+[ext_resource type="Texture2D" uid="uid://ova07n7s4gi2" path="res://icons/file_icons/obs_text.png" id="3_sditg"]
+[ext_resource type="PackedScene" uid="uid://dxhw5a74sfb0l" path="res://ui_components/scenes/image_edit_thing.tscn" id="3_v7id5"]
+[ext_resource type="PackedScene" uid="uid://cvnkmcy514umo" path="res://ui_components/scenes/video_edit_thing.tscn" id="4_f2nhq"]
+[ext_resource type="Texture2D" uid="uid://l4xiaxbg0i6b" path="res://icons/file_icons/obs_photo.png" id="4_v7id5"]
+[ext_resource type="Texture2D" uid="uid://bt4lo6ujts0sg" path="res://icons/file_icons/obs_video.png" id="5_f2nhq"]
+
+[node name="ObservationEdit" type="ScrollContainer" node_paths=PackedStringArray("images_container", "videos_container", "file_dialog", "video_file_dialog", "text_button", "photo_button", "video_button", "title_edit", "note_edit", "select_button", "display_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iwie5")
+vertical_scroll_mode = 4
+script = ExtResource("2_sditg")
+image_edit_scene = ExtResource("3_v7id5")
+video_edit_scene = ExtResource("4_f2nhq")
+images_container = NodePath("VBoxContainer/Images")
+videos_container = NodePath("VBoxContainer/Videos")
+file_dialog = NodePath("ImageFileDialog")
+video_file_dialog = NodePath("VideoFileDialog")
+text_button = NodePath("VBoxContainer/TypeSelect/TextButton")
+photo_button = NodePath("VBoxContainer/TypeSelect/PhotoButton")
+video_button = NodePath("VBoxContainer/TypeSelect/VideoButton")
+title_edit = NodePath("VBoxContainer/TitleEdit")
+note_edit = NodePath("VBoxContainer/NoteEdit")
+select_button = NodePath("VBoxContainer/ImageSelectButton")
+display_button = NodePath("VBoxContainer/ShowButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TypeSelect" type="HBoxContainer" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="TextButton" type="Button" parent="VBoxContainer/TypeSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Text observation"
+theme_type_variation = &"ToolButton"
+toggle_mode = true
+button_group = ExtResource("2_w0sja")
+icon = ExtResource("3_sditg")
+icon_alignment = 1
+
+[node name="PhotoButton" type="Button" parent="VBoxContainer/TypeSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Image observation"
+theme_type_variation = &"ToolButton"
+toggle_mode = true
+button_group = ExtResource("2_w0sja")
+icon = ExtResource("4_v7id5")
+icon_alignment = 1
+
+[node name="VideoButton" type="Button" parent="VBoxContainer/TypeSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Video observation"
+theme_type_variation = &"ToolButton"
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("2_w0sja")
+icon = ExtResource("5_f2nhq")
+icon_alignment = 1
+
+[node name="ImageSelectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Add image"
+
+[node name="Images" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Videos" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Observation Title"
+alignment = 1
+
+[node name="NoteEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Observer's note"
+wrap_mode = 1
+
+[node name="ShowButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Display"
+
+[node name="ImageFileDialog" type="FileDialog" parent="."]
+title = "Open File(s)"
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg")
+
+[node name="VideoFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open File(s)"
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.ogv;Video Files;")

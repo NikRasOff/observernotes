@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://6nydnvqvlx4d"]
+
+[ext_resource type="Script" uid="uid://clqd4ni4nrmqd" path="res://ui_components/scripts/file_inspect.gd" id="1_33p7p"]
+[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_a1a8v"]
+[ext_resource type="PackedScene" uid="uid://7x2vj6xcx7dm" path="res://ui_components/scenes/alg_file_display.tscn" id="2_xksim"]
+[ext_resource type="Texture2D" uid="uid://bt05efqm2rpfd" path="res://icons/button_icons/reload.png" id="3_oot8x"]
+[ext_resource type="Texture2D" uid="uid://4hj51glicki8" path="res://icons/button_icons/up_layer.png" id="4_a1a8v"]
+[ext_resource type="Script" uid="uid://c17jaua4ce21f" path="res://ui_components/scripts/file_dialog.gd" id="4_t0gy8"]
+[ext_resource type="Script" uid="uid://8h3ba3pkb2dg" path="res://ui_components/scripts/custom_button.gd" id="5_au00c"]
+
+[sub_resource type="Resource" id="Resource_oot8x"]
+script = ExtResource("5_au00c")
+button_name = "Modify name"
+right = false
+action_name = "ch_name"
+metadata/_custom_type_script = "uid://8h3ba3pkb2dg"
+
+[node name="FileInspect" type="VBoxContainer" node_paths=PackedStringArray("file_inspect", "delete_confirm", "rename_confirm", "dir_path_display", "accept_dialog", "up_layer_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_a1a8v")
+script = ExtResource("1_33p7p")
+file_display_scene = ExtResource("2_xksim")
+file_inspect = NodePath("FileInspect/VBoxContainer")
+delete_confirm = NodePath("FileInspect/DeleteConfirmDialog")
+rename_confirm = NodePath("FileInspect/RenameConfirmDialog")
+dir_path_display = NodePath("FilePath/ScrollContainer/Label")
+accept_dialog = NodePath("FileInspect/AcceptDialog")
+up_layer_button = NodePath("FilePath/UpLayerButton")
+
+[node name="FilePath" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="FilePath"]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_scroll_mode = 0
+
+[node name="Label" type="Label" parent="FilePath/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "algorithms"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="FilePath"]
+layout_mode = 2
+
+[node name="ReloadButton" type="Button" parent="FilePath"]
+texture_filter = 1
+layout_mode = 2
+tooltip_text = "Reload"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("3_oot8x")
+
+[node name="UpLayerButton" type="Button" parent="FilePath"]
+texture_filter = 1
+layout_mode = 2
+tooltip_text = "Reload"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("4_a1a8v")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="FileInspect" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FileInspect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="AcceptDialog" type="AcceptDialog" parent="FileInspect"]
+title = "Notice"
+unresizable = true
+always_on_top = true
+
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="FileInspect"]
+size = Vector2i(300, 100)
+unresizable = true
+ok_button_text = "Delete"
+script = ExtResource("4_t0gy8")
+text_template = "Are you sure you want to delete \"{file}\"?"
+metadata/_custom_type_script = "uid://c17jaua4ce21f"
+
+[node name="RenameConfirmDialog" type="ConfirmationDialog" parent="FileInspect"]
+title = "File already exists"
+size = Vector2i(300, 100)
+unresizable = true
+ok_button_text = "Overwrite"
+script = ExtResource("4_t0gy8")
+use_template = false
+custom_buttons = Array[ExtResource("5_au00c")]([SubResource("Resource_oot8x")])
+metadata/_custom_type_script = "uid://c17jaua4ce21f"
+
+[connection signal="pressed" from="FilePath/ReloadButton" to="." method="reload_files"]

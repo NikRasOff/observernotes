@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceb25b4lx8y0d"]
+
+[ext_resource type="PackedScene" uid="uid://byvolqh12k2kt" path="res://ui_scenes/observations_tab.tscn" id="1_fl6f8"]
+[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_rh3we"]
+[ext_resource type="Script" uid="uid://jng4ml23rlw5" path="res://ui_components/scripts/clock_label.gd" id="2_ta41p"]
+[ext_resource type="Script" uid="uid://c404u7rpwekjp" path="res://ui_scenes/scripts/main_ui.gd" id="2_ub1su"]
+[ext_resource type="Script" uid="uid://r05nlc81fi02" path="res://ui_components/scripts/os_label.gd" id="4_quvln"]
+[ext_resource type="PackedScene" uid="uid://bj15yu5r74y20" path="res://ui_scenes/profile_tab.tscn" id="5_sy7gi"]
+[ext_resource type="Texture2D" uid="uid://c3adfh5k6fnf5" path="res://icons/button_icons/off.png" id="7_sy7gi"]
+
+[node name="MainUI" type="Control" node_paths=PackedStringArray("current_user_label", "tab_bar", "observations_tab", "profile_tab", "exit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rh3we")
+script = ExtResource("2_ub1su")
+current_user_label = NodePath("VBoxContainer/TopBar/CurrentUser")
+tab_bar = NodePath("VBoxContainer/TabBar")
+observations_tab = NodePath("VBoxContainer/ObservationsTab")
+profile_tab = NodePath("VBoxContainer/ProfileTab")
+exit_button = NodePath("VBoxContainer/BottomBar/ExitButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentUser" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Current user: N-1606"
+
+[node name="Clock" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "16:06"
+script = ExtResource("2_ta41p")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="VBoxContainer"]
+layout_mode = 2
+current_tab = 0
+tab_count = 4
+tab_0/title = "Observations"
+tab_0/tooltip = "For cataloguing your observations"
+tab_1/title = "Notes"
+tab_1/tooltip = "For miscelanious notes"
+tab_1/disabled = true
+tab_2/title = "Profile"
+tab_2/tooltip = "For editing your observer profile"
+tab_3/title = "Settings"
+tab_3/tooltip = "For changing settings"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ObservationsTab" parent="VBoxContainer" instance=ExtResource("1_fl6f8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProfileTab" parent="VBoxContainer" instance=ExtResource("5_sy7gi")]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BottomBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="OSLabel" type="Label" parent="VBoxContainer/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ObserverOS"
+script = ExtResource("4_quvln")
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/BottomBar"]
+texture_filter = 1
+layout_mode = 2
+tooltip_text = "Quit"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("7_sy7gi")
