@@ -15,6 +15,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 focus_mode = 1
 expand = true
+bus = &"VideoPlayback"
 script = ExtResource("1_amvon")
 fullscreen_tooltip = "Fullscreen"
 unfullscreen_tooltip = "Exit fullscreen"
@@ -26,7 +27,7 @@ pause_texture = ExtResource("2_amvon")
 play_texture = ExtResource("1_4v3gh")
 overlay = NodePath("Overlay")
 play_button = NodePath("Overlay/PlayButton")
-fullscreen_button = NodePath("Overlay/FullscreenButton")
+fullscreen_button = NodePath("Overlay/HBoxContainer/FullscreenButton")
 debug_label = NodePath("DebugLabel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -71,16 +72,17 @@ grow_vertical = 2
 theme_type_variation = &"ToolButton"
 icon = ExtResource("1_4v3gh")
 
-[node name="FullscreenButton" type="Button" parent="Overlay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 0
+alignment = 2
+
+[node name="FullscreenButton" type="Button" parent="Overlay/HBoxContainer"]
+layout_mode = 2
 theme_type_variation = &"ToolButton"
 icon = ExtResource("2_pcj6r")
