@@ -1,27 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceb25b4lx8y0d"]
+[gd_scene load_steps=10 format=3 uid="uid://ceb25b4lx8y0d"]
 
 [ext_resource type="PackedScene" uid="uid://byvolqh12k2kt" path="res://ui_scenes/observations_tab.tscn" id="1_fl6f8"]
-[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_rh3we"]
+[ext_resource type="Theme" uid="uid://dvn0etwb87hip" path="res://themes/theme_health.tres" id="1_u55gc"]
 [ext_resource type="Script" uid="uid://jng4ml23rlw5" path="res://ui_components/scripts/clock_label.gd" id="2_ta41p"]
 [ext_resource type="Script" uid="uid://c404u7rpwekjp" path="res://ui_scenes/scripts/main_ui.gd" id="2_ub1su"]
 [ext_resource type="Script" uid="uid://r05nlc81fi02" path="res://ui_components/scripts/os_label.gd" id="4_quvln"]
+[ext_resource type="PackedScene" uid="uid://khstvkrj86rk" path="res://ui_scenes/settings_tab.tscn" id="5_bkolq"]
 [ext_resource type="PackedScene" uid="uid://bj15yu5r74y20" path="res://ui_scenes/profile_tab.tscn" id="5_sy7gi"]
 [ext_resource type="Texture2D" uid="uid://c3adfh5k6fnf5" path="res://icons/button_icons/off.png" id="7_sy7gi"]
+[ext_resource type="AudioStream" uid="uid://c2ehck3on3ppj" path="res://sounds/computer_hum.mp3" id="8_u55gc"]
 
-[node name="MainUI" type="Control" node_paths=PackedStringArray("current_user_label", "tab_bar", "observations_tab", "profile_tab", "exit_button")]
+[node name="MainUI" type="Control" node_paths=PackedStringArray("current_user_label", "tab_bar", "observations_tab", "settings_tab", "profile_tab", "exit_button", "ambient_hum")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_rh3we")
+theme = ExtResource("1_u55gc")
 script = ExtResource("2_ub1su")
 current_user_label = NodePath("VBoxContainer/TopBar/CurrentUser")
 tab_bar = NodePath("VBoxContainer/TabBar")
 observations_tab = NodePath("VBoxContainer/ObservationsTab")
+settings_tab = NodePath("VBoxContainer/SettingsTab")
 profile_tab = NodePath("VBoxContainer/ProfileTab")
 exit_button = NodePath("VBoxContainer/BottomBar/ExitButton")
+ambient_hum = NodePath("AmbientHum")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -68,6 +72,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="SettingsTab" parent="VBoxContainer" instance=ExtResource("5_bkolq")]
+visible = false
+layout_mode = 2
+
 [node name="ProfileTab" parent="VBoxContainer" instance=ExtResource("5_sy7gi")]
 visible = false
 layout_mode = 2
@@ -90,3 +98,7 @@ layout_mode = 2
 tooltip_text = "Quit"
 theme_type_variation = &"ToolButton"
 icon = ExtResource("7_sy7gi")
+
+[node name="AmbientHum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_u55gc")
+parameters/looping = true

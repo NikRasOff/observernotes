@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2rxb2gpynfj8"]
+
+[ext_resource type="Script" uid="uid://cbhf35nfslp2a" path="res://ui_components/scripts/bool_setting.gd" id="1_4y8r2"]
+[ext_resource type="Texture2D" uid="uid://cl54yhi07oy1f" path="res://icons/button_icons/checked2.png" id="2_a3fv6"]
+[ext_resource type="Texture2D" uid="uid://chl4id17a2tlx" path="res://icons/button_icons/unchecked2.png" id="3_ktoch"]
+
+[node name="BoolSetting" type="HBoxContainer" node_paths=PackedStringArray("label", "check_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4y8r2")
+checked_texture = ExtResource("2_a3fv6")
+unchecked_texture = ExtResource("3_ktoch")
+label = NodePath("Label")
+check_button = NodePath("CheckButton")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Setting"
+
+[node name="CheckButton" type="Button" parent="."]
+layout_mode = 2
+theme_type_variation = &"ToolButton"

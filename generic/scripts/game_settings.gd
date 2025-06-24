@@ -1,11 +1,12 @@
 extends Node
 
-
 signal settings_loaded
+signal settings_changed
 signal debug_toggled(value:bool)
 
 @export var fit_resolution:bool = true
 @export var ignore_base_width:bool = false
+@export var theme_list:Array[CustomTheme]
 
 var game_settings:GameSettingsResource
 var settings_ready:bool = false
@@ -19,6 +20,7 @@ func _ready() -> void:
 		return
 	fix_window_size(true)
 	LimboConsole.register_command(toggle_debug, "debug", "Toggles debug functionality")
+	LimboConsole.register_command(set_ambient_hum, "hum")
 
 func await_loaded() -> void:
 	if settings_ready:
@@ -68,6 +70,7 @@ func set_setting(setting_name:String, value) -> void:
 		return
 	game_settings.set(setting_name, value)
 	game_settings.save_settings()
+	settings_changed.emit()
 
 func setting_exists(setting_name:String) -> bool:
 	return game_settings.get(setting_name) != null
@@ -101,3 +104,18 @@ func get_focused_folder_obs() -> String:
 
 func set_focused_folder_obs(value:String) -> void:
 	set_setting("focused_folder_obs", value)
+
+func set_ambient_hum(value:bool) -> void:
+	set_setting("ambient_hum", value)
+
+func get_ambient_hum() -> bool:
+	return get_setting("ambient_hum", false)
+
+func get_current_theme_idx() -> int:
+	return get_setting("selected_theme", 0)
+
+func get_current_theme() -> CustomTheme:
+	return theme_list[get_current_theme_idx()]
+
+func set_current_theme(idx:int) -> void:
+	set_setting("selected_theme", idx)

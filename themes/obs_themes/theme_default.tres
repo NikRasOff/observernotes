@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CustomTheme" load_steps=2 format=3 uid="uid://bxdx7xg8fgn1v"]
+
+[ext_resource type="Script" uid="uid://5l4exqsqrjjv" path="res://themes/scripts/custom_theme.gd" id="1_4j3n5"]
+
+[resource]
+script = ExtResource("1_4j3n5")
+theme_file = "uid://xtpje3orbg6k"
+theme_name = "Orange (Nik)"
+clear_color = Color(0.160784, 0.12549, 0.0980392, 1)
+main_color = Color(1, 0.662745, 0.219608, 1)
+cursor_image = "uid://ddji7kdsumtyp"
+metadata/_custom_type_script = "uid://5l4exqsqrjjv"

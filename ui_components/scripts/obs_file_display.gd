@@ -12,6 +12,7 @@ const obs_video_texture = preload("res://icons/file_icons/obs_video.png")
 const supported_file_types:Array[String] = [".res", ".tres"]
 
 func display_file_icon():
+	texture_rect.self_modulate = GameSettings.get_current_theme().main_color
 	if is_dir:
 		texture_rect.texture = folder_texture
 		return

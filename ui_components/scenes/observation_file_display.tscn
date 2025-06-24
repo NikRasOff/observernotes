@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf2745l7x4l6w"]
+[gd_scene load_steps=6 format=3 uid="uid://cf2745l7x4l6w"]
 
-[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_sq8bb"]
 [ext_resource type="Script" uid="uid://b74ecscjth2jf" path="res://ui_components/scripts/observation_file_display.gd" id="2_0x3pl"]
 [ext_resource type="Texture2D" uid="uid://cuvjpj16b8epn" path="res://icons/button_icons/new_folder.png" id="3_smw0w"]
 [ext_resource type="Texture2D" uid="uid://der83l0bosbtk" path="res://icons/button_icons/new_obs.png" id="4_0x3pl"]
@@ -13,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_sq8bb")
 script = ExtResource("2_0x3pl")
 file_inspect = NodePath("FileInspect")
 

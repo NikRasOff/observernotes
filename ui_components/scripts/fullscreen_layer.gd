@@ -16,6 +16,7 @@ func _ready() -> void:
 	video_player.fullscreen_requested.connect(unfullscreen)
 
 func display_image(im:String) -> void:
+	Beeper.beep()
 	image_display.set_image(im)
 	show()
 	image_display.show()
@@ -23,6 +24,7 @@ func display_image(im:String) -> void:
 	video_player.stop()
 
 func display_video(vid:String) -> void:
+	Beeper.beep()
 	video_player.stop()
 	video_player.assign_video(vid)
 	show()
@@ -30,5 +32,6 @@ func display_video(vid:String) -> void:
 	video_player.show()
 
 func unfullscreen(_arg) -> void:
+	Beeper.beep()
 	video_player.stop()
 	hide()

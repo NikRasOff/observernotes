@@ -6,6 +6,8 @@ class_name GameSettingsResource
 @export var debug:bool = false
 @export var profile_name:String = "N-1606"
 @export var focused_folder_obs:String = "user://observations"
+@export var ambient_hum:bool = false
+@export var selected_theme:int = 1
 
 static func load_settings() -> GameSettingsResource:
 	var gs:GameSettingsResource

@@ -44,6 +44,7 @@ func _ready():
 	rename_confirm.file_confirmed.connect(_on_rename_confirm_confirmed)
 	rename_confirm.file_custom_action.connect(_on_rename_confirm_custom_action)
 	up_layer_button.pressed.connect(go_up)
+	GameSettings.settings_changed.connect(reload_files)
 	start_at_root()
 
 func notify_player(what:String) -> void:

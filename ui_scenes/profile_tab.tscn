@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj15yu5r74y20"]
+[gd_scene load_steps=2 format=3 uid="uid://bj15yu5r74y20"]
 
-[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_qqs5y"]
 [ext_resource type="Script" uid="uid://ctoi2r48tkfpv" path="res://ui_scenes/scripts/profile_tab.gd" id="2_lqej6"]
 
 [node name="ProfileTab" type="Control" node_paths=PackedStringArray("profile_name_edit", "confirm_button")]
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-theme = ExtResource("1_qqs5y")
 script = ExtResource("2_lqej6")
 profile_name_edit = NodePath("VBoxContainer/ProfileNameEdit")
 confirm_button = NodePath("VBoxContainer/ConfirmButton")

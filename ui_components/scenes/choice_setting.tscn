@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1unk87n5om2m"]
+
+[ext_resource type="Script" uid="uid://b8vyqfql6lyie" path="res://ui_components/scripts/choice_setting.gd" id="1_yniw2"]
+
+[node name="ChoiceSetting" type="HBoxContainer" node_paths=PackedStringArray("label", "option_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yniw2")
+label = NodePath("Label")
+option_button = NodePath("OptionButton")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Setting"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2

@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://khstvkrj86rk"]
+
+[ext_resource type="PackedScene" uid="uid://b1unk87n5om2m" path="res://ui_components/scenes/choice_setting.tscn" id="1_ldejn"]
+[ext_resource type="PackedScene" uid="uid://d2rxb2gpynfj8" path="res://ui_components/scenes/bool_setting.tscn" id="2_ao5tv"]
+
+[node name="SettingsTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChoiceSetting" parent="VBoxContainer" instance=ExtResource("1_ldejn")]
+layout_mode = 2
+display_name = "Theme"
+
+[node name="BoolSetting" parent="VBoxContainer" instance=ExtResource("2_ao5tv")]
+layout_mode = 2
+setting_name = "ambient_hum"
+display_name = "Ambient Computer Hum"

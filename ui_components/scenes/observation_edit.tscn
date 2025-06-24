@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr0cr4ycmekhm"]
+[gd_scene load_steps=8 format=3 uid="uid://dr0cr4ycmekhm"]
 
-[ext_resource type="Theme" uid="uid://xtpje3orbg6k" path="res://themes/test_theme.tres" id="1_iwie5"]
 [ext_resource type="Script" uid="uid://pmkdwwwhxlbo" path="res://ui_components/scripts/observation_edit.gd" id="2_sditg"]
 [ext_resource type="ButtonGroup" uid="uid://c7d1abh1f1bxr" path="res://ui_components/obs_type_button_group.tres" id="2_w0sja"]
 [ext_resource type="Texture2D" uid="uid://ova07n7s4gi2" path="res://icons/file_icons/obs_text.png" id="3_sditg"]
@@ -15,7 +14,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_iwie5")
 vertical_scroll_mode = 4
 script = ExtResource("2_sditg")
 image_edit_scene = ExtResource("3_v7id5")
