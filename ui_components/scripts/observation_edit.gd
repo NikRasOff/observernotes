@@ -40,6 +40,8 @@ func _ready() -> void:
 	text_button.pressed.connect(func():set_type(Observation.TYPE_TEXT))
 	photo_button.pressed.connect(func():set_type(Observation.TYPE_PHOTO))
 	video_button.pressed.connect(func():set_type(Observation.TYPE_VIDEO))
+	title_edit.focus_entered.connect(func(): ProgramStatus.set_focused_video_player(null))
+	note_edit.focus_entered.connect(func(): ProgramStatus.set_focused_video_player(null))
 	title_edit.text_changed.connect(func(_t): save_timer = 1)
 	note_edit.text_changed.connect(func(): save_timer = 1)
 	select_button.pressed.connect(select_file)
