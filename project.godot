@@ -12,7 +12,7 @@ config_version=5
 
 config/name="ObserverNotes"
 config/description="A notes app made specifically for observation."
-config/version="2.0.0"
+config/version="1.2.0"
 run/main_scene="uid://ceb25b4lx8y0d"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/low_processor_mode=true
