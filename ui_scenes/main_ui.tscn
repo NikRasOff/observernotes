@@ -54,16 +54,13 @@ layout_mode = 2
 [node name="TabBar" type="TabBar" parent="VBoxContainer"]
 layout_mode = 2
 current_tab = 0
-tab_count = 4
+tab_count = 3
 tab_0/title = "Observations"
 tab_0/tooltip = "For cataloguing your observations"
-tab_1/title = "Notes"
-tab_1/tooltip = "For miscelanious notes"
-tab_1/disabled = true
-tab_2/title = "Profile"
-tab_2/tooltip = "For editing your observer profile"
-tab_3/title = "Settings"
-tab_3/tooltip = "For changing settings"
+tab_1/title = "Profile"
+tab_1/tooltip = "For editing your observer profile"
+tab_2/title = "Settings"
+tab_2/tooltip = "For changing settings"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2

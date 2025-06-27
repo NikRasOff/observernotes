@@ -1,37 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpw1730p0dbqo"]
+[gd_scene load_steps=11 format=3 uid="uid://dpw1730p0dbqo"]
 
 [ext_resource type="Texture2D" uid="uid://sal06n33tkkk" path="res://icons/button_icons/play.png" id="1_4v3gh"]
 [ext_resource type="Script" uid="uid://cyg6uanp5hxun" path="res://ui_components/scripts/interactive_video_player.gd" id="1_amvon"]
+[ext_resource type="Script" uid="uid://ivx7m2bfysip" path="res://addons/gde_gozen/video_playback.gd" id="2_4v3gh"]
 [ext_resource type="Texture2D" uid="uid://c55ypakfrje68" path="res://icons/button_icons/pause.png" id="2_amvon"]
 [ext_resource type="Texture2D" uid="uid://2vnx11dgvhvr" path="res://icons/button_icons/fullscreen.png" id="2_pcj6r"]
 [ext_resource type="Texture2D" uid="uid://b7ocw6t5sases" path="res://icons/button_icons/unfullscreen.png" id="3_6upkg"]
+[ext_resource type="Texture2D" uid="uid://dke1mts22bh37" path="res://icons/button_icons/muted.png" id="7_0a1mk"]
+[ext_resource type="Texture2D" uid="uid://ijd64adwt5tk" path="res://icons/button_icons/volume.png" id="7_v7i8y"]
+[ext_resource type="Texture2D" uid="uid://crhwpxm0f8nn4" path="res://icons/button_icons/speed.png" id="9_gnhi8"]
 
-[node name="InteractiveVideoPlayer" type="VideoStreamPlayer" node_paths=PackedStringArray("overlay", "play_button", "fullscreen_button", "debug_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6upkg"]
+bg_color = Color(0, 0, 0, 0.388235)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("loading_screen", "overlay", "play_button", "fullscreen_button", "volume_button", "volume_popup", "volume_slider", "debug_label", "video_playback", "speed_button", "timeline", "timestamp")]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-focus_mode = 1
-expand = true
-bus = &"VideoPlayback"
 script = ExtResource("1_amvon")
 fullscreen_tooltip = "Fullscreen"
-unfullscreen_tooltip = "Exit fullscreen"
-play_tooltip = "Play video"
-pause_tooltip = "Pause video"
+unfullscreen_tooltip = "Exit Fullscreen"
+play_tooltip = "Play Video"
+pause_tooltip = "Pause Video"
+mute_tooltip = "Mute Video"
+unmute_tooltip = "Unmute Video"
 fullscreen_texture = ExtResource("2_pcj6r")
 unfullscreen_texture = ExtResource("3_6upkg")
 pause_texture = ExtResource("2_amvon")
 play_texture = ExtResource("1_4v3gh")
+unmuted_texture = ExtResource("7_v7i8y")
+muted_texture = ExtResource("7_0a1mk")
+loading_screen = NodePath("LoadingScreen")
 overlay = NodePath("Overlay")
-play_button = NodePath("Overlay/PlayButton")
-fullscreen_button = NodePath("Overlay/HBoxContainer/FullscreenButton")
+play_button = NodePath("Overlay/PanelContainer/HBoxContainer/PlayButton")
+fullscreen_button = NodePath("Overlay/PanelContainer/HBoxContainer/FullscreenButton")
+volume_button = NodePath("Overlay/PanelContainer/HBoxContainer/VolumeButton")
+volume_popup = NodePath("Overlay/PanelContainer/HBoxContainer/VolumeButton/VolumePanel")
+volume_slider = NodePath("Overlay/PanelContainer/HBoxContainer/VolumeButton/VolumePanel/VolumeSlider")
 debug_label = NodePath("DebugLabel")
+video_playback = NodePath("VideoPlayback")
+speed_button = NodePath("Overlay/PanelContainer/HBoxContainer/SpeedButton")
+timeline = NodePath("Overlay/PanelContainer/HBoxContainer/Timeline")
+timestamp = NodePath("Overlay/PanelContainer/HBoxContainer/Timestamp")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-show_behind_parent = true
+[node name="VideoPlayback" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,10 +54,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+script = ExtResource("2_4v3gh")
+pitch_adjust = false
+metadata/_custom_type_script = "uid://ivx7m2bfysip"
 
 [node name="DebugLabel" type="Label" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -54,35 +70,110 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 
-[node name="PlayButton" type="Button" parent="Overlay"]
+[node name="PanelContainer" type="PanelContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6upkg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/PanelContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Overlay/PanelContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_type_variation = &"ToolButton"
+icon = ExtResource("1_4v3gh")
+
+[node name="Timestamp" type="Label" parent="Overlay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Timeline" type="HSlider" parent="Overlay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="SpeedButton" type="OptionButton" parent="Overlay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Change Playback Speed"
+selected = 3
+item_count = 8
+popup/item_0/text = "0.25x"
+popup/item_0/icon = ExtResource("9_gnhi8")
+popup/item_0/id = 0
+popup/item_1/text = "0.5x"
+popup/item_1/icon = ExtResource("9_gnhi8")
+popup/item_1/id = 1
+popup/item_2/text = "0.75x"
+popup/item_2/icon = ExtResource("9_gnhi8")
+popup/item_2/id = 2
+popup/item_3/text = "1.0x"
+popup/item_3/icon = ExtResource("9_gnhi8")
+popup/item_3/id = 3
+popup/item_4/text = "1.25x"
+popup/item_4/icon = ExtResource("9_gnhi8")
+popup/item_4/id = 4
+popup/item_5/text = "1.5x"
+popup/item_5/icon = ExtResource("9_gnhi8")
+popup/item_5/id = 5
+popup/item_6/text = "1.75x"
+popup/item_6/icon = ExtResource("9_gnhi8")
+popup/item_6/id = 6
+popup/item_7/text = "2.0x"
+popup/item_7/icon = ExtResource("9_gnhi8")
+popup/item_7/id = 7
+
+[node name="VolumeButton" type="Button" parent="Overlay/PanelContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_type_variation = &"ToolButton"
+icon = ExtResource("7_v7i8y")
+
+[node name="VolumePanel" type="PopupPanel" parent="Overlay/PanelContainer/HBoxContainer/VolumeButton"]
+
+[node name="VolumeSlider" type="VSlider" parent="Overlay/PanelContainer/HBoxContainer/VolumeButton/VolumePanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+max_value = 1.0
+step = 0.05
+
+[node name="FullscreenButton" type="Button" parent="Overlay/PanelContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_type_variation = &"ToolButton"
+icon = ExtResource("2_pcj6r")
+
+[node name="LoadingScreen" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="LoadingScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"ToolButton"
-icon = ExtResource("1_4v3gh")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Overlay"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 2
-
-[node name="FullscreenButton" type="Button" parent="Overlay/HBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"ToolButton"
-icon = ExtResource("2_pcj6r")
+theme_override_font_sizes/font_size = 32
+text = "Video is loading"

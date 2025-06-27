@@ -115,6 +115,16 @@ static func safe_copy(from:String, to:String):
 			return
 		LimboConsole.info(str(DirAccess.copy_absolute(from, get_safe_path_res(to + "/" + from.get_file()))))
 
+static func safe_move(path:String, to:String, is_dir:bool) -> void:
+	if path.is_empty():
+		return
+	if is_dir:
+		var new_path = get_safe_path_dir(to + "/" + path.get_file())
+		DirAccess.rename_absolute(path, new_path)
+	else:
+		var new_path = get_safe_path_file(to + "/" + path.get_file())
+		DirAccess.rename_absolute(path, new_path)
+
 ## Creates a directory and all preceding directories
 static func make_dir_good(path:String):
 	while !DirAccess.dir_exists_absolute(path):
@@ -131,8 +141,13 @@ static func save_res_to(res:Resource, path:String="") -> Error:
 		make_dir_good(path.get_base_dir())
 	return ResourceSaver.save(res, path)
 
+static func get_double_timestamp(max:float, cur:float) -> String:
+	var max_sec := int(floor(max))
+	var result = get_timestamp(cur, max >= 3600) + "/" + get_timestamp(max)
+	return result
+
 ## Turns a number of seconds into a timestamp
-static func get_timestamp(sec:float) -> String:
+static func get_timestamp(sec:float, hours:bool=false) -> String:
 	var sec_int := int(floor(sec))
 	var sec_number := sec_int % 60
 	var min_number := (sec_int / 60) % 60
@@ -140,7 +155,7 @@ static func get_timestamp(sec:float) -> String:
 	
 	var result:String
 	
-	if hour_number != 0:
+	if hour_number != 0 or hours:
 		result += str(hour_number) + ":"
 	if min_number < 10:
 		result += "0"

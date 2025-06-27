@@ -7,6 +7,8 @@ signal selected(file_d:FileDisplay)
 signal copy_requested(file_d:FileDisplay)
 signal delete_requested(file_d:FileDisplay)
 signal rename_requested(by:FileDisplay, to:String)
+signal started_dragging(file_d: FileDisplay, point:Vector2)
+signal stopped_dragging(file_d:FileDisplay)
 
 enum {
 	MODE_EDIT,
@@ -124,6 +126,11 @@ func _on_rename_button_pressed() -> void:
 
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				started_dragging.emit(self)
+			else:
+				stopped_dragging.emit(self, event.global_position)
 		if event.double_click:
 			if display_mode == MODE_SELECT and !is_dir:
 				selected.emit(self)

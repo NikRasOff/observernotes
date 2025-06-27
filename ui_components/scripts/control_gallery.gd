@@ -1,7 +1,7 @@
 extends Control
 class_name ControlGallery
 
-signal video_fullscreen_requested(vid:String)
+signal video_fullscreen_requested(vid:InteractiveVideoPlayer)
 signal image_fullscreen_requested(im:String)
 
 @export_group("Scenes")
@@ -37,6 +37,8 @@ func add_video(path:String) -> void:
 	var inst = video_player_scene.instantiate() as InteractiveVideoPlayer
 	inst.assign_video(path)
 	inst.fullscreen_requested.connect(video_fullscreen_requested.emit)
+	if content_control.get_child_count() == 0:
+		ProgramStatus.set_focused_video_player(inst)
 	add_control(inst)
 
 func add_control(c:Control) -> void:
@@ -67,10 +69,14 @@ func set_index(value:int) -> void:
 	var prev := content_control.get_child(index) as Control
 	if prev != null:
 		prev.hide()
+		if prev is InteractiveVideoPlayer:
+			ProgramStatus.set_focused_video_player(null)
 	index = clampi(value, 0, max(content_control.get_child_count() - 1, 0))
 	var now := content_control.get_child(index) as Control
 	if now != null:
 		now.show()
+		if now is InteractiveVideoPlayer:
+			ProgramStatus.set_focused_video_player(now)
 
 func update_buttons() -> void:
 	if content_control.get_child_count() <= 1:

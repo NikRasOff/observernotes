@@ -1,7 +1,7 @@
 extends ScrollContainer
 class_name ObservationDisplay
 
-signal video_fullscreen_requested(vid:String)
+signal video_fullscreen_requested(vid:InteractiveVideoPlayer)
 signal image_fullscreen_requested(im:String)
 signal edit_requested(path:String)
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=83 format=3 uid="uid://dvn0etwb87hip"]
+[gd_resource type="Theme" load_steps=92 format=3 uid="uid://dvn0etwb87hip"]
 
 [ext_resource type="Texture2D" uid="uid://cl54yhi07oy1f" path="res://icons/button_icons/checked2.png" id="1_030fj"]
 [ext_resource type="Texture2D" uid="uid://di1rx1lsngbet" path="res://icons/button_icons/left_small.png" id="1_c533i"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cywuiuvcym7ch" path="res://icons/button_icons/down_small_off_white.png" id="10_030fj"]
 [ext_resource type="Texture2D" uid="uid://upkn3hwqplrc" path="res://icons/button_icons/down_small_orange.png" id="10_louvo"]
 [ext_resource type="Texture2D" uid="uid://cf5n3fhnk5shy" path="res://icons/button_icons/checked.png" id="11_8kpyj"]
+[ext_resource type="Texture2D" uid="uid://c8ucamtwiefo3" path="res://icons/theme_health/slider_health.png" id="12_oc04n"]
 [ext_resource type="Texture2D" uid="uid://bbxypvxdehnpj" path="res://icons/button_icons/checked_disabled.png" id="12_wcmtp"]
 [ext_resource type="Texture2D" uid="uid://bb1qgg26yyun3" path="res://icons/button_icons/checked_radio.png" id="13_qsn67"]
 [ext_resource type="Texture2D" uid="uid://cxhuwnmnula04" path="res://icons/button_icons/checked_radio_disabled.png" id="14_253sq"]
@@ -26,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://be1tvp47vrcca" path="res://icons/button_icons/updown_small_orange.png" id="23_q40d1"]
 [ext_resource type="Texture2D" uid="uid://b1gycdv5th8y2" path="res://icons/button_icons/close.png" id="24_seclt"]
 [ext_resource type="Texture2D" uid="uid://cpfxoau4nrd8f" path="res://icons/button_icons/close_pressed.png" id="25_bv6pf"]
+[ext_resource type="Texture2D" uid="uid://cpolp5cuquxvo" path="res://icons/theme_health/slider_horiz_health.png" id="26_td7ko"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qeh7r"]
 content_margin_bottom = 3.0
@@ -160,6 +162,25 @@ color = Color(0.921569, 0.921569, 0.921569, 1)
 grow_begin = 2.0
 grow_end = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td7ko"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvl1l"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awjl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_detail = 6
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k52gy"]
 content_margin_left = 5.0
 content_margin_top = 3.0
@@ -206,6 +227,14 @@ border_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_y215o"]
 color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t55lm"]
+bg_color = Color(0, 0, 0.501961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23rah"]
 bg_color = Color(0.1728, 0.1728, 0.18, 0)
@@ -367,6 +396,25 @@ grow_begin = 2.0
 grow_end = 2.0
 vertical = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5s3q1"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4438"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_louvo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
+corner_detail = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y215o"]
 bg_color = Color(0, 0, 0.501961, 1)
 border_width_left = 1
@@ -443,6 +491,12 @@ GameMenuButton/styles/normal = SubResource("StyleBoxFlat_vd37b")
 GameMenuButton/styles/pressed = SubResource("StyleBoxFlat_6weqs")
 HBoxContainer/constants/separation = 0
 HSeparator/styles/separator = SubResource("StyleBoxLine_rrso7")
+HSlider/constants/center_grabber = 1
+HSlider/icons/grabber = ExtResource("12_oc04n")
+HSlider/icons/grabber_highlight = ExtResource("12_oc04n")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_td7ko")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_fvl1l")
+HSlider/styles/slider = SubResource("StyleBoxFlat_8awjl")
 Label/colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
 Label/styles/normal = SubResource("StyleBoxEmpty_k52gy")
 LineEdit/colors/caret_color = Color(0.921569, 0.921569, 0.921569, 1)
@@ -474,6 +528,7 @@ PopupMenu/icons/unchecked_disabled = ExtResource("20_kel4h")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_o4i8d")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_qeh7r")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_y215o")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_t55lm")
 RichTextLabel/colors/default_color = Color(0.921569, 0.921569, 0.921569, 1)
 RichTextLabel/colors/selection_color = Color(1, 1, 1, 1)
 ScrollContainer/styles/panel = SubResource("StyleBoxFlat_23rah")
@@ -535,6 +590,12 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_s55gd")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_58ryp")
 VSeparator/constants/separation = 8
 VSeparator/styles/separator = SubResource("StyleBoxLine_1cnc4")
+VSlider/constants/center_grabber = 1
+VSlider/icons/grabber = ExtResource("26_td7ko")
+VSlider/icons/grabber_highlight = ExtResource("26_td7ko")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_5s3q1")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_m4438")
+VSlider/styles/slider = SubResource("StyleBoxFlat_louvo")
 Window/colors/title_color = Color(0.921569, 0.921569, 0.921569, 1)
 Window/icons/close = ExtResource("24_seclt")
 Window/icons/close_pressed = ExtResource("25_bv6pf")

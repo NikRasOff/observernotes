@@ -54,11 +54,11 @@ func change_tab(idx:int) -> void:
 			observations_tab.show()
 			profile_tab.hide()
 			settings_tab.hide()
-		2:
+		1:
 			observations_tab.hide()
 			profile_tab.show()
 			settings_tab.hide()
-		3:
+		2:
 			observations_tab.hide()
 			profile_tab.hide()
 			settings_tab.show()

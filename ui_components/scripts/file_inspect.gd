@@ -39,6 +39,8 @@ var current_path:String
 
 var clipboard:String
 
+var dragged_file_display:FileDisplay
+
 func _ready():
 	delete_confirm.file_confirmed.connect(_on_delete_dialog_confirmed)
 	rename_confirm.file_confirmed.connect(_on_rename_confirm_confirmed)
@@ -78,6 +80,7 @@ func create_file_display(file_path:String, mode:int, is_dir:bool, custom_name:St
 	new_file_display.rename_requested.connect(_on_rename_requested)
 	new_file_display.selected.connect(_on_selected)
 	new_file_display.copy_requested.connect(_on_copy_requested)
+	new_file_display.stopped_dragging.connect(_on_file_dragging_stop)
 	new_file_display.call_deferred("create", file_path, mode, is_dir, custom_name)
 	return new_file_display
 
@@ -194,3 +197,20 @@ func _on_rename_confirm_custom_action(action:StringName, f:String, extra_args:Di
 				file_renamed.emit(result["rename_path"], result["result"])
 				reload_files()
 	rename_confirm.hide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if dragged_file_display == null:
+			return
+		if event.button_index == MOUSE_BUTTON_LEFT and !event.pressed:
+			dragged_file_display = null
+			get_viewport().set_input_as_handled()
+
+func _on_file_dragging_stop(file_d:FileDisplay, point:Vector2) -> void:
+	var ilist = file_inspect.get_children() as Array[FileDisplay]
+	for i in ilist:
+		if i.get_global_rect().has_point(point):
+			if i != file_d and i.is_dir:
+				GoodStuff.safe_move(file_d.file_path, i.file_path, file_d.is_dir)
+			break
+	reload_files()

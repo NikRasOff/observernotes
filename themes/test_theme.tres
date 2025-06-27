@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=81 format=3 uid="uid://xtpje3orbg6k"]
+[gd_resource type="Theme" load_steps=90 format=3 uid="uid://xtpje3orbg6k"]
 
 [ext_resource type="Texture2D" uid="uid://di1rx1lsngbet" path="res://icons/button_icons/left_small.png" id="1_d5wqg"]
 [ext_resource type="Texture2D" uid="uid://cf5n3fhnk5shy" path="res://icons/button_icons/checked.png" id="1_egvk6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b2dt2ify6dyxf" path="res://icons/button_icons/submenu_mirrored.png" id="8_ilgka"]
 [ext_resource type="Texture2D" uid="uid://d5k6ey4htaxh" path="res://icons/button_icons/unchecked.png" id="9_cgahi"]
 [ext_resource type="Texture2D" uid="uid://dsk7bftp4vgoj" path="res://icons/button_icons/visible.png" id="9_tngra"]
+[ext_resource type="Texture2D" uid="uid://5ucwlclbpuvo" path="res://icons/theme_orange/slider_orange.png" id="10_db7go"]
 [ext_resource type="Texture2D" uid="uid://b8uup5nhve22b" path="res://icons/button_icons/unchecked_disabled.png" id="10_s55gd"]
 [ext_resource type="Texture2D" uid="uid://b1gycdv5th8y2" path="res://icons/button_icons/close.png" id="11_qeh7r"]
 [ext_resource type="Texture2D" uid="uid://cpfxoau4nrd8f" path="res://icons/button_icons/close_pressed.png" id="12_y215o"]
@@ -25,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dv1w8xkorapam" path="res://icons/button_icons/indeterminate.png" id="21_ntw66"]
 [ext_resource type="Texture2D" uid="uid://ur4jncmcrun5" path="res://icons/button_icons/indeterminate_disabled.png" id="22_18pyj"]
 [ext_resource type="Texture2D" uid="uid://be1tvp47vrcca" path="res://icons/button_icons/updown_small_orange.png" id="23_v31tu"]
+[ext_resource type="Texture2D" uid="uid://c4hwnr2ji87xx" path="res://icons/theme_orange/slider_horiz_orange.png" id="25_na4ev"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qeh7r"]
 content_margin_bottom = 3.0
@@ -156,6 +158,25 @@ color = Color(1, 0.662745, 0.219608, 1)
 grow_begin = 2.0
 grow_end = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_na4ev"]
+bg_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_desck"]
+bg_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xluay"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.662745, 0.219608, 1)
+corner_detail = 6
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k52gy"]
 content_margin_left = 5.0
 content_margin_top = 3.0
@@ -202,6 +223,14 @@ border_color = Color(1, 0.662745, 0.219608, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_y215o"]
 color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxm1w"]
+bg_color = Color(0.160784, 0.12549, 0.0980392, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.662745, 0.219608, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23rah"]
 bg_color = Color(0.1728, 0.1728, 0.18, 0)
@@ -363,6 +392,25 @@ grow_begin = 2.0
 grow_end = 2.0
 vertical = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcts"]
+bg_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dywcp"]
+bg_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tngra"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.662745, 0.219608, 1)
+corner_detail = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y215o"]
 bg_color = Color(0.160784, 0.12549, 0.0980392, 1)
 border_width_left = 1
@@ -436,6 +484,12 @@ GameMenuButton/styles/normal = SubResource("StyleBoxFlat_vd37b")
 GameMenuButton/styles/pressed = SubResource("StyleBoxFlat_6weqs")
 HBoxContainer/constants/separation = 0
 HSeparator/styles/separator = SubResource("StyleBoxLine_rrso7")
+HSlider/constants/center_grabber = 1
+HSlider/icons/grabber = ExtResource("10_db7go")
+HSlider/icons/grabber_highlight = ExtResource("10_db7go")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_na4ev")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_desck")
+HSlider/styles/slider = SubResource("StyleBoxFlat_xluay")
 Label/colors/font_color = Color(1, 0.662, 0.22, 1)
 Label/styles/normal = SubResource("StyleBoxEmpty_k52gy")
 LineEdit/colors/caret_color = Color(1, 0.662745, 0.219608, 1)
@@ -447,6 +501,11 @@ LineEdit/colors/selection_color = Color(1, 0.662745, 0.219608, 1)
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_fskfh")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_43r82")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_egvk6")
+OptionButton/colors/icon_focus_color = Color(1, 0.662745, 0.219608, 1)
+OptionButton/colors/icon_hover_color = Color(1, 0.662745, 0.219608, 1)
+OptionButton/colors/icon_hover_pressed_color = Color(1, 0.662745, 0.219608, 1)
+OptionButton/colors/icon_normal_color = Color(1, 0.662745, 0.219608, 1)
+OptionButton/colors/icon_pressed_color = Color(1, 0.662745, 0.219608, 1)
 OptionButton/icons/arrow = ExtResource("20_7yek0")
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_2m0ah")
 PopupMenu/colors/font_accelerator_color = Color(1, 0.72549, 0.368627, 0.494118)
@@ -467,6 +526,7 @@ PopupMenu/icons/unchecked_disabled = ExtResource("10_s55gd")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_o4i8d")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_qeh7r")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_y215o")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_wxm1w")
 RichTextLabel/colors/default_color = Color(1, 0.662745, 0.219608, 1)
 RichTextLabel/colors/selection_color = Color(1, 1, 1, 1)
 ScrollContainer/styles/panel = SubResource("StyleBoxFlat_23rah")
@@ -528,6 +588,12 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_s55gd")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_58ryp")
 VSeparator/constants/separation = 8
 VSeparator/styles/separator = SubResource("StyleBoxLine_1cnc4")
+VSlider/constants/center_grabber = 1
+VSlider/icons/grabber = ExtResource("25_na4ev")
+VSlider/icons/grabber_highlight = ExtResource("25_na4ev")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_wtcts")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_dywcp")
+VSlider/styles/slider = SubResource("StyleBoxFlat_tngra")
 Window/colors/title_color = Color(1, 0.662745, 0.219608, 1)
 Window/icons/close = ExtResource("11_qeh7r")
 Window/icons/close_pressed = ExtResource("12_y215o")

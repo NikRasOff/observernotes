@@ -2,6 +2,7 @@ extends Node
 
 signal settings_loaded
 signal settings_changed
+signal playback_settings_changed
 signal debug_toggled(value:bool)
 
 @export var fit_resolution:bool = true
@@ -96,9 +97,6 @@ func get_profile_name() -> String:
 func get_current_resolution() -> Vector2i:
 	return screen_resolution
 
-func get_mouse_sensitivity() -> float:
-	return get_setting("mouse_sensitivity", 1)
-
 func get_focused_folder_obs() -> String:
 	return get_setting("focused_folder_obs", "user://observations")
 
@@ -119,3 +117,24 @@ func get_current_theme() -> CustomTheme:
 
 func set_current_theme(idx:int) -> void:
 	set_setting("selected_theme", idx)
+
+func set_video_muted(value:bool) -> void:
+	set_setting("video_muted", value)
+	playback_settings_changed.emit()
+
+func get_video_muted() -> bool:
+	return get_setting("video_muted", false)
+
+func set_video_volume(value:float) -> void:
+	set_setting("video_volume", value)
+	playback_settings_changed.emit()
+
+func get_video_volume() -> float:
+	return get_setting("video_volume", 1.0)
+
+func set_video_speed(value:float) -> void:
+	set_setting("video_speed", value)
+	playback_settings_changed.emit()
+
+func get_video_speed() -> float:
+	return get_setting("video_speed", 1.0)

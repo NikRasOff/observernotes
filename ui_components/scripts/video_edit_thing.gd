@@ -4,6 +4,7 @@ class_name VideoEditThing
 signal remove_video(idx:int)
 
 @export var video_player:InteractiveVideoPlayer
+@export var video_name_label:Label
 
 var index:int = -1
 
@@ -21,6 +22,7 @@ func setup_size() -> void:
 func set_video(vid:String) -> void:
 	await ready
 	video_player.assign_video(vid)
+	video_name_label.text = vid.get_file()
 
 func _on_remove_button_pressed() -> void:
 	remove_video.emit(index)

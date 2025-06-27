@@ -9,6 +9,11 @@ class_name GameSettingsResource
 @export var ambient_hum:bool = false
 @export var selected_theme:int = 1
 
+@export_group("Video Playback Settings")
+@export var video_muted:bool = false : set = set_video_muted
+@export var video_volume:float = 1 : set = set_video_volume
+@export var video_speed:float = 1
+
 static func load_settings() -> GameSettingsResource:
 	var gs:GameSettingsResource
 	if ResourceLoader.exists("user://game_settings.tres"):
@@ -23,3 +28,12 @@ func save_settings() -> void:
 func set_language(value:String) -> void:
 	TranslationServer.set_locale(value)
 	language = value
+
+func set_video_muted(value:bool) -> void:
+	video_muted = value
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("VideoPlayback"), value)
+
+func set_video_volume(value:float) -> void:
+	video_volume = value
+	var amplify_effect = AudioServer.get_bus_effect(AudioServer.get_bus_index("VideoPlayback"), 0) as AudioEffectAmplify
+	amplify_effect.volume_linear = value

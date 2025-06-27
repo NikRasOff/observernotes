@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dptkpd5vo15ri"]
+
+[ext_resource type="Script" uid="uid://ceksogo6pgfx4" path="res://generic/scripts/program_status.gd" id="1_o0va7"]
+
+[node name="ProgramStatus" type="Node"]
+script = ExtResource("1_o0va7")
