@@ -11,6 +11,7 @@ enum {
 @export_enum("Footage", "Photograph", "Text") var type:int = TYPE_VIDEO
 @export var title:String
 @export var creator:String
+@export var censor_creator:bool = false
 @export var note:String
 @export var files:PackedStringArray
 @export var text:String

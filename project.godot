@@ -15,15 +15,15 @@ config/description="A notes app made specifically for observation."
 config/version="1.2.1"
 run/main_scene="uid://ceb25b4lx8y0d"
 config/features=PackedStringArray("4.4", "Forward Plus")
-run/low_processor_mode=true
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
 LimboConsole="*res://addons/limbo_console/limbo_console.gd"
-GameSettings="*res://generic/scenes/game_settings.tscn"
-Beeper="*res://generic/scenes/beeper.tscn"
-ProgramStatus="*res://generic/scenes/program_status.tscn"
+GameSettings="*res://settings/game_settings.tscn"
+Beeper="*res://generic/beeper/beeper.tscn"
+ProgramStatus="*res://generic/program_status/program_status.tscn"
 
 [display]
 

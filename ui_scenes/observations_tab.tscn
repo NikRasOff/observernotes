@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://byvolqh12k2kt"]
 
-[ext_resource type="Script" uid="uid://cryfqlsnud2ye" path="res://ui_scenes/scripts/observations_tab.gd" id="1_72ays"]
-[ext_resource type="PackedScene" uid="uid://cf2745l7x4l6w" path="res://ui_components/scenes/observation_file_display.tscn" id="1_bcc3s"]
-[ext_resource type="PackedScene" uid="uid://dr0cr4ycmekhm" path="res://ui_components/scenes/observation_edit.tscn" id="3_lukjf"]
-[ext_resource type="PackedScene" uid="uid://2ungak734q35" path="res://ui_components/scenes/observation_display.tscn" id="4_0wtnq"]
-[ext_resource type="PackedScene" uid="uid://i82tt2eaij30" path="res://ui_components/scenes/fullscreen_layer.tscn" id="4_lukjf"]
+[ext_resource type="Script" uid="uid://cryfqlsnud2ye" path="res://ui_scenes/observations_tab.gd" id="1_72ays"]
+[ext_resource type="PackedScene" uid="uid://cf2745l7x4l6w" path="res://ui_components/file_inspect/observation_file_display.tscn" id="1_bcc3s"]
+[ext_resource type="PackedScene" uid="uid://dr0cr4ycmekhm" path="res://ui_components/observation_display/observation_edit.tscn" id="3_lukjf"]
+[ext_resource type="PackedScene" uid="uid://2ungak734q35" path="res://ui_components/observation_display/observation_display.tscn" id="4_0wtnq"]
+[ext_resource type="PackedScene" uid="uid://i82tt2eaij30" path="res://ui_components/media_display/fullscreen_layer.tscn" id="4_lukjf"]
 
 [node name="ObservationsTab" type="Control" node_paths=PackedStringArray("file_inspect", "placeholder", "obs_edit", "obs_display", "fullscreen_layer")]
 layout_mode = 3
@@ -27,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 1
 
 [node name="ObservationFileDisplay" parent="HBoxContainer" instance=ExtResource("1_bcc3s")]
 layout_mode = 2
@@ -34,6 +35,7 @@ size_flags_horizontal = 3
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Placeholder" type="Control" parent="HBoxContainer"]
 layout_mode = 2

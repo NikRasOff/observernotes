@@ -1,4 +1,7 @@
 extends Resource
+## Old save format. Still left here for compatibility purposes.
+## [br][br]
+## Deprecated
 class_name GameSettingsResource
 
 @export_range(0.5, 5) var mouse_sensitivity:float = 1
@@ -31,9 +34,9 @@ func set_language(value:String) -> void:
 
 func set_video_muted(value:bool) -> void:
 	video_muted = value
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("VideoPlayback"), value)
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("VideoPlayback"), value)
 
 func set_video_volume(value:float) -> void:
 	video_volume = value
-	var amplify_effect = AudioServer.get_bus_effect(AudioServer.get_bus_index("VideoPlayback"), 0) as AudioEffectAmplify
-	amplify_effect.volume_linear = value
+	#var amplify_effect = AudioServer.get_bus_effect(AudioServer.get_bus_index("VideoPlayback"), 0) as AudioEffectAmplify
+	#amplify_effect.volume_linear = value

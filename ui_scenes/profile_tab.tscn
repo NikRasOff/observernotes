@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj15yu5r74y20"]
+[gd_scene load_steps=4 format=3 uid="uid://bj15yu5r74y20"]
 
-[ext_resource type="Script" uid="uid://ctoi2r48tkfpv" path="res://ui_scenes/scripts/profile_tab.gd" id="2_lqej6"]
+[ext_resource type="Texture2D" uid="uid://bcj38rc71vo1e" path="res://icons/button_icons/new_profile.png" id="2_45yjw"]
+[ext_resource type="Script" uid="uid://ctoi2r48tkfpv" path="res://ui_scenes/profile_tab.gd" id="2_lqej6"]
+[ext_resource type="PackedScene" uid="uid://du2mnkuytgpaq" path="res://ui_components/custom_item_select/custom_item_select.tscn" id="3_lqej6"]
 
-[node name="ProfileTab" type="Control" node_paths=PackedStringArray("profile_name_edit", "confirm_button")]
+[node name="ProfileTab" type="Control" node_paths=PackedStringArray("profile_select", "profile_name_edit", "confirm_button", "profile_attributes")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,40 +13,73 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("2_lqej6")
-profile_name_edit = NodePath("VBoxContainer/ProfileNameEdit")
-confirm_button = NodePath("VBoxContainer/ConfirmButton")
+profile_select = NodePath("HBoxContainer/ProfileSelection/ProfileSelect")
+profile_name_edit = NodePath("HBoxContainer/ProfileEdit/ProfileNameEdit")
+confirm_button = NodePath("HBoxContainer/ProfileEdit/ConfirmButton")
+profile_attributes = NodePath("HBoxContainer/ProfileEdit/ProfileAttributes")
 
-[node name="SafetyLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -5.5
-offset_right = 5.5
-offset_bottom = 29.0
-grow_horizontal = 2
-text = "If you're seeing this text that means that I fucked up and forgot to edit this part out of the episode
-This is not meant to be seen
-I'm leaving this text here just in case that ever happens"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ProfileSelection" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/ProfileSelection"]
+layout_mode = 2
+text = "Profiles"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/ProfileSelection"]
+layout_mode = 2
+
+[node name="ButtonPanel" type="HBoxContainer" parent="HBoxContainer/ProfileSelection"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="NewProfileButton" type="Button" parent="HBoxContainer/ProfileSelection/ButtonPanel"]
+layout_mode = 2
+tooltip_text = "Create new profile"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("2_45yjw")
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/ProfileSelection"]
+layout_mode = 2
+
+[node name="ProfileSelect" parent="HBoxContainer/ProfileSelection" instance=ExtResource("3_lqej6")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="ProfileEdit" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="ProfileNameEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="ProfileNameEdit" type="LineEdit" parent="HBoxContainer/ProfileEdit"]
 layout_mode = 2
 placeholder_text = "Profile name"
 alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+[node name="ProfileAttributes" type="VBoxContainer" parent="HBoxContainer/ProfileEdit"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/ProfileEdit"]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="HBoxContainer/ProfileEdit"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Set profile name"
+text = "Save changes"
+
+[connection signal="pressed" from="HBoxContainer/ProfileSelection/ButtonPanel/NewProfileButton" to="." method="create_new_profile"]
