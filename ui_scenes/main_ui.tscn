@@ -62,6 +62,7 @@ tab_0/title = "Observations"
 tab_0/tooltip = "For cataloguing your observations"
 tab_1/title = "Chats"
 tab_1/tooltip = "For chats with fellow observers"
+tab_1/disabled = true
 tab_2/title = "Profile"
 tab_2/tooltip = "For editing your observer profile"
 tab_3/title = "Settings"
