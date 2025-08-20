@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm7bq2ql7waic"]
+
+[ext_resource type="Script" uid="uid://1th1gk25iv11" path="res://ui_components/custom_multi_options_button.gd" id="1_j4b0h"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AAAAAAAAAAAAAAAAAAaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CustomMultiOptionButton" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_type_variation = &"CustomOptionButton"
+script = ExtResource("1_j4b0h")
+debug_items = PackedStringArray("opt1", "hoh", "eeeeeee", "findid", "longing", "oooooooooooooooooooo", "wowzah", "yyyyyyy[fgcolor=black]yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy[/fgcolor]")
+metadata/_custom_type_script = "uid://1th1gk25iv11"

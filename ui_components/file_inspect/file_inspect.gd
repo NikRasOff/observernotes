@@ -138,6 +138,7 @@ func reload_files() -> void:
 ## Creates a new folder at the current path
 func create_new_folder() -> void:
 	GoodStuff.safe_dir_create(current_path + "/new_folder")
+	Beeper.beep(1.2)
 	reload_files()
 
 ## Pastes the previously copied file at the current path
@@ -183,6 +184,7 @@ func _on_delete_dialog_confirmed(f:String, _args) -> void:
 	file_deleted.emit(f)
 	OS.move_to_trash(ProjectSettings.globalize_path(f))
 	reload_files()
+	Beeper.beep(0.5)
 
 func _on_rename_confirm_confirmed(f:String, extra_args:Dictionary) -> void:
 	OS.move_to_trash(ProjectSettings.globalize_path(f))
@@ -219,6 +221,10 @@ func _on_file_dragging_stop(file_d:FileDisplay, point:Vector2) -> void:
 	for i in ilist:
 		if i.get_global_rect().has_point(point):
 			if i != file_d and i.is_dir:
-				GoodStuff.safe_move(file_d.file_path, i.file_path, file_d.is_dir)
+				var new_path := GoodStuff.safe_move(file_d.file_path, i.file_path, file_d.is_dir)
+				if file_d.is_dir:
+					dir_renamed.emit(file_d.file_path, new_path)
+				else:
+					file_renamed.emit(file_d.file_path, new_path)
 			break
 	reload_files()

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=102 format=3 uid="uid://dvn0etwb87hip"]
+[gd_resource type="Theme" load_steps=105 format=3 uid="uid://dvn0etwb87hip"]
 
 [ext_resource type="Texture2D" uid="uid://cl54yhi07oy1f" path="res://icons/button_icons/checked2.png" id="1_030fj"]
 [ext_resource type="Texture2D" uid="uid://di1rx1lsngbet" path="res://icons/button_icons/left_small.png" id="1_c533i"]
@@ -119,6 +119,38 @@ content_margin_bottom = 2.0
 bg_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_td7ko"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbgg8"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 3.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0veyg"]
+content_margin_left = 1.0
+content_margin_top = 2.0
+content_margin_right = 1.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kel4h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvj1m"]
 content_margin_top = 5.0
@@ -465,6 +497,8 @@ border_width_bottom = 1
 border_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfkpp"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
 bg_color = Color(0.2538, 0.2538, 0.27, 0)
 border_width_top = 1
 border_width_bottom = 1
@@ -472,6 +506,8 @@ border_color = Color(0.921569, 0.921569, 0.921569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_253sq"]
 content_margin_left = 0.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
 bg_color = Color(0.2538, 0.2538, 0.27, 0)
 border_width_left = 2
 border_width_top = 1
@@ -484,6 +520,8 @@ content_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c184"]
 content_margin_left = 0.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
 bg_color = Color(0.2538, 0.2538, 0.27, 0)
 border_width_left = 2
 border_color = Color(0.921569, 0.921569, 0.921569, 1)
@@ -515,6 +553,10 @@ Button/styles/pressed = SubResource("StyleBoxFlat_82hl2")
 CheckButton/icons/checked = ExtResource("1_030fj")
 CheckButton/icons/unchecked = ExtResource("2_oc04n")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_td7ko")
+CustomOptionButton/base_type = &"PanelContainer"
+CustomOptionButton/styles/hovered = SubResource("StyleBoxFlat_dbgg8")
+CustomOptionButton/styles/panel = SubResource("StyleBoxFlat_0veyg")
+CustomOptionButton/styles/pressed = SubResource("StyleBoxFlat_kel4h")
 FileDialog/colors/file_icon_color = Color(0.921569, 0.921569, 0.921569, 1)
 FileDialog/colors/folder_icon_color = Color(0.921569, 0.921569, 0.921569, 1)
 FileDialog/icons/back_folder = ExtResource("1_c533i")

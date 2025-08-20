@@ -16,6 +16,9 @@ func _ready() -> void:
 	admin_setting.tooltip_text = "If yes, can edit all profiles, not just their own"
 	profile_attributes.add_child(admin_setting)
 	admin_setting.hide()
+	var color_setting := ColorSettingEdit.new("chat_text_color", "Chat Text Color")
+	color_setting.tooltip_text = "Color used when displaying this profile's texts in the Chats tab"
+	profile_attributes.add_child(color_setting)
 	
 	profile_select.item_selected.connect(select_profile)
 	profile_select.item_deleted.connect(delete_profile)
@@ -29,7 +32,7 @@ func setup_tab() -> void:
 		var profile_settings := ProfileSettings.get_from_profile(profile_name)
 		if profile_settings == null or profile_settings.hidden:
 			continue
-		var profile_item := ProfileItem.new(profile_settings.profile_name, profile_name, !profile_settings.undeletable, profile_select.delete_item.bind(profile_name))
+		var profile_item := ProfileItem.new(profile_settings.profile_name, profile_name, !profile_settings.undeletable)
 		profile_select.add_item(profile_item)
 	profile_select.select_item(GameSettings.global_settings.current_profile)
 	
@@ -54,12 +57,13 @@ func delete_profile(profile_item:CustomItemSelectItem) -> void:
 func create_new_profile() -> void:
 	var new_savename := GameSettings.create_profile()
 	var new_settings := ProfileSettings.get_from_profile(new_savename)
-	var new_item := ProfileItem.new(new_settings.profile_name, new_savename, true, profile_select.delete_item.bind(new_savename))
+	var new_item := ProfileItem.new(new_settings.profile_name, new_savename, true)
 	profile_select.add_item(new_item)
 	Beeper.beep(1.1, 2)
 
 func confirm_profile_changes() -> void:
 	GameSettings.profile_settings.profile_name = profile_name_edit.text
 	profile_select.get_item(GameSettings.global_settings.current_profile).item_name = GameSettings.profile_settings.profile_name
+	GameSettings.profile_settings.get_obs_list().update_fallback_names(GameSettings.profile_settings.get_profile_name_with_effects())
 	GameSettings.save_profile_settings()
 	Beeper.beep(1.1)

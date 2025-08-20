@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfc6iejg2okxw"]
+
+[ext_resource type="Script" uid="uid://d2wky56winab6" path="res://ui_scenes/chats_tab.gd" id="1_ll51i"]
+[ext_resource type="Texture2D" uid="uid://db0dnpj5sydcg" path="res://icons/button_icons/new_chat.png" id="2_va3pj"]
+[ext_resource type="PackedScene" uid="uid://r2wjktdrqvy7" path="res://ui_components/chat/chat_editor.tscn" id="3_va3pj"]
+[ext_resource type="PackedScene" uid="uid://cju26n3ehufu2" path="res://ui_components/chat/chat_display.tscn" id="4_ll51i"]
+
+[node name="ChatsTab" type="Control" node_paths=PackedStringArray("chat_select", "placeholder", "chat_edit", "chat_display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ll51i")
+chat_select = NodePath("HBoxContainer/ChatSelect/ScrollContainer/ChatSelect")
+placeholder = NodePath("HBoxContainer/Placeholder")
+chat_edit = NodePath("HBoxContainer/ChatEditor")
+chat_display = NodePath("HBoxContainer/ChatDisplay")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChatSelect" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonPanel" type="HBoxContainer" parent="HBoxContainer/ChatSelect"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="NewChatButton" type="Button" parent="HBoxContainer/ChatSelect/ButtonPanel"]
+layout_mode = 2
+tooltip_text = "Create new chat"
+theme_type_variation = &"ToolButton"
+icon = ExtResource("2_va3pj")
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/ChatSelect"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ChatSelect"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChatSelect" type="VBoxContainer" parent="HBoxContainer/ChatSelect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="ChatEditor" parent="HBoxContainer" instance=ExtResource("3_va3pj")]
+visible = false
+layout_mode = 2
+
+[node name="ChatDisplay" parent="HBoxContainer" instance=ExtResource("4_ll51i")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Placeholder" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[connection signal="pressed" from="HBoxContainer/ChatSelect/ButtonPanel/NewChatButton" to="." method="create_new_chat"]

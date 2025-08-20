@@ -12,6 +12,7 @@ var selected_item:CustomItemSelectItem
 func add_item(item:CustomItemSelectItem) -> void:
 	item_holder.add_child(item)
 	item.item_selected.connect(unselect_other_items.bind(item))
+	item.delete_requested.connect(delete_item)
 
 func clear_items() -> void:
 	for i in item_holder.get_children():

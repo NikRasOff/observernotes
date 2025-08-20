@@ -4,11 +4,13 @@ class_name CustomItemListItem
 
 @export var item_name:String = "Item" : set = set_item_name
 @export var has_icon:bool = false
+@export var rich_label:bool = false
 @export var item_icon:Texture2D
 @export var has_button_deck:bool = false
 
 var main_container:HBoxContainer
 var name_label:Label
+var rich_name_label:RichTextLabel
 var icon_texture_rect:TextureRect
 var icon_separator:VSeparator
 var button_deck_separator:VSeparator
@@ -21,6 +23,11 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	GameSettings.profile_settings_changed.connect(update_theme)
+	setup()
+
+func setup() -> void:
+	await GameSettings.await_loaded()
+	update_theme()
 
 func _init(t_name:String, t_icon:Texture2D = null, t_has_button_deck:bool = false) -> void:
 	item_name = t_name
@@ -67,7 +74,6 @@ func build_node() -> void:
 	
 	if has_icon:
 		icon_texture_rect = TextureRect.new()
-		icon_texture_rect.self_modulate = GameSettings.get_current_theme().main_color
 		icon_texture_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		icon_texture_rect.texture = item_icon
 		icon_texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
@@ -76,13 +82,25 @@ func build_node() -> void:
 		icon_separator = VSeparator.new()
 		main_container.add_child(icon_separator)
 	
-	name_label = Label.new()
-	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	name_label.size_flags_vertical = Control.SIZE_FILL
-	name_label.text = item_name
-	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	main_container.add_child(name_label)
+	if rich_label:
+		rich_name_label = RichTextLabel.new()
+		rich_name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		rich_name_label.size_flags_vertical = Control.SIZE_FILL
+		rich_name_label.text = item_name
+		rich_name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		rich_name_label.fit_content = true
+		rich_name_label.bbcode_enabled = true
+		rich_name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+		rich_name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		main_container.add_child(rich_name_label)
+	else:
+		name_label = Label.new()
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		name_label.size_flags_vertical = Control.SIZE_FILL
+		name_label.text = item_name
+		name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		main_container.add_child(name_label)
 	
 	if has_button_deck:
 		button_deck_separator = VSeparator.new()

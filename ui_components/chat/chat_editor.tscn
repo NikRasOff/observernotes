@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://r2wjktdrqvy7"]
+
+[ext_resource type="Script" uid="uid://b1yghygldw4ip" path="res://ui_components/chat/chat_editor.gd" id="1_r1x46"]
+
+[node name="ChatEditor" type="VBoxContainer" node_paths=PackedStringArray("chat_name_edit", "chat_events_container", "select_type_popup")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+script = ExtResource("1_r1x46")
+chat_name_edit = NodePath("ChatNameLabel")
+chat_events_container = NodePath("ScrollContainer/VBoxContainer")
+select_type_popup = NodePath("SelectTypePopup")
+
+[node name="ChatNameLabel" type="LineEdit" parent="."]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+placeholder_text = "Chat Name"
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="AddEventButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Add Event"
+
+[node name="SaveChangesButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Save Changes"
+
+[node name="SelectTypePopup" type="PopupPanel" parent="."]
+title = "Select Type"
+initial_position = 1
+size = Vector2i(237, 170)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectTypePopup"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 236.0
+offset_bottom = 169.0
+
+[node name="Label" type="Label" parent="SelectTypePopup/VBoxContainer"]
+layout_mode = 2
+text = "Select Event Type:"
+horizontal_alignment = 1
+
+[node name="TestButton" type="Button" parent="SelectTypePopup/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Default Event (DEBUG ONLY)"
+
+[node name="SystemMessageButton" type="Button" parent="SelectTypePopup/VBoxContainer"]
+layout_mode = 2
+text = "System Message"
+
+[node name="UserMessageButton" type="Button" parent="SelectTypePopup/VBoxContainer"]
+layout_mode = 2
+text = "User Message"
+
+[node name="TypingMessageButton" type="Button" parent="SelectTypePopup/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Typing Message"
+
+[connection signal="pressed" from="HBoxContainer/AddEventButton" to="." method="request_event_creation"]
+[connection signal="pressed" from="HBoxContainer/SaveChangesButton" to="." method="save_changes"]
+[connection signal="pressed" from="SelectTypePopup/VBoxContainer/TestButton" to="." method="create_debug_event"]
+[connection signal="pressed" from="SelectTypePopup/VBoxContainer/SystemMessageButton" to="." method="create_system_message_event"]
+[connection signal="pressed" from="SelectTypePopup/VBoxContainer/UserMessageButton" to="." method="create_user_message_event"]
+[connection signal="pressed" from="SelectTypePopup/VBoxContainer/TypingMessageButton" to="." method="create_typing_message_event"]

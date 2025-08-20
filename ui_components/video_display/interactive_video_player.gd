@@ -98,7 +98,6 @@ func _ready() -> void:
 	
 	GameSettings.profile_settings_changed.connect(update_playback_settings)
 	
-	video_playback.audio_player.bus = "VideoPlayback"
 	overlay_lifetime = INF
 	show_overlay()
 	fullscreen = fullscreen
@@ -148,6 +147,7 @@ func set_muted(value:bool) -> void:
 	else:
 		volume_button.icon = unmuted_texture
 		volume_button.tooltip_text = mute_tooltip
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(video_playback.audio_player.bus), value)
 
 func _on_volume_slider_start() -> void:
 	is_dragging_volume = true
@@ -158,10 +158,11 @@ func _on_volume_slider_stop(_val) -> void:
 	GameSettings.save_profile_settings()
 
 func change_volume(value:float) -> void:
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("VideoPlayback"), value)
+	video_playback.audio_player.volume_linear = value
 
 func set_volume(value:float) -> void:
 	volume_slider.value = value
+	video_playback.audio_player.volume_linear = value
 
 func set_fullscreen(value:bool) -> void:
 	fullscreen = value

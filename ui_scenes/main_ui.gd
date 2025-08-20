@@ -4,9 +4,7 @@ extends Control
 
 @export var current_user_label:RichTextLabel
 @export var tab_bar:TabBar
-@export var observations_tab:ObservationsTab
-@export var settings_tab:Control
-@export var profile_tab:ProfileTab
+@export var tab_container:VBoxContainer
 @export var exit_button:Button
 @export var ambient_hum:AudioStreamPlayer
 
@@ -52,18 +50,12 @@ func quit_btn() -> void:
 
 func change_tab(idx:int) -> void:
 	Beeper.beep()
-	match idx:
-		0:
-			observations_tab.show()
-			profile_tab.hide()
-			settings_tab.hide()
-		1:
-			observations_tab.hide()
-			profile_tab.show()
-			settings_tab.hide()
-		2:
-			observations_tab.hide()
-			profile_tab.hide()
-			settings_tab.show()
-		_:
-			LimboConsole.error("Not implemented yet")
+	if idx >= tab_container.get_child_count():
+		LimboConsole.error("Not implemented yet!")
+		tab_bar.current_tab = 0
+		return
+	for tab in tab_container.get_children():
+		if tab.get_index() == idx:
+			tab.show()
+		else:
+			tab.hide()

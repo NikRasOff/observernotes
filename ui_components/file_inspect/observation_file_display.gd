@@ -16,9 +16,9 @@ func _ready() -> void:
 
 func create_observation() -> void:
 	var new_obs:Observation = Observation.new()
-	new_obs.creator = GameSettings.profile_settings.profile_name
-	new_obs.censor_creator = GameSettings.profile_settings.name_censored
+	new_obs.creator_reference = GameSettings.profile_settings.get_reference()
 	var result = GoodStuff.safe_resource_save(new_obs, file_inspect.current_path + "/new_observation.tres")
+	GameSettings.profile_settings.add_obs_to_list(result["save_path"])
 	LimboConsole.info("Created observation, result: " + str(result["result"]))
 	file_inspect.reload_files()
 	observation_edited.emit(result["save_path"])

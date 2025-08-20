@@ -64,6 +64,8 @@ func delete_profile(profile:String) -> void:
 		LimboConsole.error("There's nothing to delete")
 		return
 	var fodel := ProfileSettings.get_profile_folder_from_name(profile)
+	var settings := ProfileSettings.get_from_profile(profile)
+	settings.get_obs_list().purge()
 	if global_settings.current_profile == profile:
 		change_profile(GlobalSettings.persistent_profile_name)
 	OS.move_to_trash(ProjectSettings.globalize_path(fodel))

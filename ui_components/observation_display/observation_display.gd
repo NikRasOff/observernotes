@@ -12,6 +12,7 @@ signal edit_requested(path:String)
 @export var edit_button:Button
 
 var obs_path:String
+var cur_obs:Observation
 
 func _ready() -> void:
 	control_gallery.video_fullscreen_requested.connect(video_fullscreen_requested.emit)
@@ -20,9 +21,11 @@ func _ready() -> void:
 	GameSettings.profile_settings_changed.connect(resolve_creator_text)
 
 func open_observation(path:String) -> void:
+	#cur_obs.free()
 	obs_path = path
 	control_gallery.reset()
 	var obs := ResourceLoader.load(path) as Observation
+	cur_obs = obs
 	match obs.type:
 		Observation.TYPE_PHOTO:
 			control_gallery.show()
@@ -36,21 +39,16 @@ func open_observation(path:String) -> void:
 		await control_gallery.setup_size()
 	title_label.text = obs.title
 	
-	var creator_text:String
-	if obs.censor_creator:
-		creator_text = "[fgcolor=#" + GameSettings.get_current_theme().main_color.to_html() + "]" + obs.creator + "[/fgcolor]"
-	else:
-		creator_text = obs.creator
-	creator_label.text = "Created by: " + creator_text
+	if obs.creator_reference == null:
+		obs.creator_reference = ProfileReference.new()
+		obs.creator_reference.ignore_savename = true
+		obs.creator_reference.fallback_name = obs.creator
+		ResourceSaver.save(obs)
+	creator_label.text = "Created by: " + obs.creator_reference.get_profile_name()
 	note_label.text = "Observer's note:\n" + obs.note
 
 func resolve_creator_text() -> void:
 	if obs_path.is_empty():
 		return
-	var obs:Observation = ResourceLoader.load(obs_path) as Observation
-	var creator_text:String
-	if obs.censor_creator:
-		creator_text = "[fgcolor=#" + GameSettings.get_current_theme().main_color.to_html() + "]" + obs.creator + "[/fgcolor]"
-	else:
-		creator_text = obs.creator
-	creator_label.text = "Created by: " + creator_text
+	cur_obs.creator_reference.update_profile_name()
+	creator_label.text = "Created by: " + cur_obs.creator_reference.get_profile_name()

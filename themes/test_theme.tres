@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=93 format=3 uid="uid://xtpje3orbg6k"]
+[gd_resource type="Theme" load_steps=96 format=3 uid="uid://xtpje3orbg6k"]
 
 [ext_resource type="Texture2D" uid="uid://di1rx1lsngbet" path="res://icons/button_icons/left_small.png" id="1_d5wqg"]
 [ext_resource type="Texture2D" uid="uid://cf5n3fhnk5shy" path="res://icons/button_icons/checked.png" id="1_egvk6"]
@@ -115,6 +115,38 @@ content_margin_top = 4.0
 content_margin_right = 5.0
 content_margin_bottom = 2.0
 bg_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18pyj"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 3.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v31tu"]
+content_margin_left = 1.0
+content_margin_top = 2.0
+content_margin_right = 1.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.662745, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8r1m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.662745, 0.219608, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvj1m"]
 content_margin_top = 5.0
@@ -457,6 +489,8 @@ content_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntw66"]
 content_margin_left = 0.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
 bg_color = Color(0.2538, 0.2538, 0.27, 0)
 border_width_left = 2
 border_color = Color(1, 0.662745, 0.219608, 1)
@@ -485,6 +519,10 @@ Button/styles/hover = SubResource("StyleBoxFlat_fskfh")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_k52gy")
 Button/styles/normal = SubResource("StyleBoxFlat_uenoj")
 Button/styles/pressed = SubResource("StyleBoxFlat_82hl2")
+CustomOptionButton/base_type = &"PanelContainer"
+CustomOptionButton/styles/hovered = SubResource("StyleBoxFlat_18pyj")
+CustomOptionButton/styles/panel = SubResource("StyleBoxFlat_v31tu")
+CustomOptionButton/styles/pressed = SubResource("StyleBoxFlat_t8r1m")
 FileDialog/colors/file_icon_color = Color(1, 0.662745, 0.219608, 1)
 FileDialog/colors/folder_icon_color = Color(1, 0.662745, 0.219608, 1)
 FileDialog/icons/back_folder = ExtResource("1_d5wqg")

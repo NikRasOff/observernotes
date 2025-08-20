@@ -3,6 +3,7 @@ extends CustomItemListItem
 class_name CustomItemSelectItem
 
 signal item_selected
+signal delete_requested
 
 @export var selectable:bool = false
 @export var select_name:String = "item"
@@ -17,10 +18,12 @@ func _init(t_name:String, t_selectable:bool = false, t_has_button_deck:bool = fa
 	item_icon = t_icon
 
 func set_is_selected(value:bool) -> void:
+	if value:
+		item_selected.emit()
+	if !selectable:
+		return
 	is_selected = value
 	update_panel_state()
-	if is_selected:
-		item_selected.emit()
 
 func update_panel_state() -> void:
 	if mouse_inside:

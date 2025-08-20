@@ -38,14 +38,26 @@ func edit_obs(path:String) -> void:
 	obs_edit.show()
 
 func _on_obs_renamed(from:String, to:String) -> void:
+	Beeper.beep()
+	var obs := (ResourceLoader.load(to) as Observation)
+	if !obs.creator_reference.ignore_savename:
+		var profile_settings := ProfileSettings.get_from_profile(obs.creator_reference.savename)
+		profile_settings.rename_obs_in_list(from, to)
 	if from != current_obs:
 		return
+	current_obs = to
 	if obs_edit.visible:
 		obs_edit.edit_observation(to)
 	if obs_display.visible:
 		obs_display.open_observation(to)
 
 func _on_obs_deleted(path:String) -> void:
+	if DirAccess.dir_exists_absolute(path):
+		return
+	var obs := (ResourceLoader.load(path) as Observation)
+	if !obs.creator_reference.ignore_savename:
+		var profile_settings := ProfileSettings.get_from_profile(obs.creator_reference.savename)
+		profile_settings.remove_obs_from_list(path)
 	if path != current_obs:
 		return
 	placeholder.show()

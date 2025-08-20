@@ -115,15 +115,17 @@ static func safe_copy(from:String, to:String):
 			return
 		LimboConsole.info(str(DirAccess.copy_absolute(from, get_safe_path_res(to + "/" + from.get_file()))))
 
-static func safe_move(path:String, to:String, is_dir:bool) -> void:
+static func safe_move(path:String, to:String, is_dir:bool) -> String:
 	if path.is_empty():
-		return
+		return ""
 	if is_dir:
 		var new_path = get_safe_path_dir(to + "/" + path.get_file())
 		DirAccess.rename_absolute(path, new_path)
+		return new_path
 	else:
 		var new_path = get_safe_path_file(to + "/" + path.get_file())
 		DirAccess.rename_absolute(path, new_path)
+		return new_path
 
 ## Creates a directory and all preceding directories
 static func make_dir_good(path:String):
